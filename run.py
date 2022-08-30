@@ -14,6 +14,7 @@ T = TypeVar("T")
 
 BLACKLIST = [
     "Above & Beyond",
+    "Jos & Eli",
     "Eli & Fur",
 ]
 
@@ -29,7 +30,12 @@ def sub_artist_tag(tag: str, album: bool) -> list[str]:
 
     cmd_artists = subprocess.run(args, capture_output=True)
     artists = uniq(
-        [x.strip() for x in cmd_artists.stdout.decode().splitlines() if x.strip()]
+        [
+            y.strip()
+            for x in cmd_artists.stdout.decode().splitlines()
+            if x.strip()
+            for y in re.split(r";(?!\s)", x)
+        ]
     )
 
     commands = []
