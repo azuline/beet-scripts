@@ -82,7 +82,7 @@ def sub_artist_tag(tag: str, album: bool) -> list[str]:
         album_flag = "-a " if album else ""
         commands.append(
             f"beet modify --yes {album_flag}"
-            f"{tag}:'{existing_art}' {tag}='{new_art}'"
+            f"{tag}::'^{re.escape(existing_art)}$' {tag}='{new_art}'"
         )
 
     return commands
