@@ -18,6 +18,11 @@ BLACKLIST = [
     "Eli & Fur",
 ]
 
+ALIASES = {
+    "BTS": "BTS (방탄소년단)",
+    "방탄소년단": "BTS (방탄소년단)",
+}
+
 
 def uniq(xs: list[T]) -> list[T]:
     return list(set(xs))
@@ -75,6 +80,10 @@ def sub_artist_tag(tag: str, album: bool) -> list[str]:
 
             new_art = ";".join(parts)
         # END TRANSFORM
+
+        for k, v in ALIASES.items():
+            k = f"(^|;){re.escape(k)}(;|$)"
+            new_art = re.sub(k, v, new_art)
 
         if existing_art == new_art:
             continue
