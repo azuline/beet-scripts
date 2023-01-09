@@ -21,11 +21,24 @@ BLACKLIST = [
 ALIASES = {
     "BTS": "BTS (방탄소년단)",
     "방탄소년단": "BTS (방탄소년단)",
+    "MAMAMOO": "Mamamoo (마마무)",
+    "Mamamoo": "Mamamoo (마마무)",
+    "마마무": "Mamamoo (마마무)",
+    "마마무 (Mamamoo)": "Mamamoo (마마무)",
+    "植松伸夫": "Nobuo Uematsu (植松伸夫)",
+    "当真伊都子": "Itoko Toma (当真伊都子)",
+    "Twenty One Pilots": "twenty one pilots",
 }
 
 
 def uniq(xs: list[T]) -> list[T]:
-    return list(set(xs))
+    seen: set[T] = set()
+    rval: list[T] = []
+    for x in xs:
+        if x in seen:
+            pass
+        rval.append(x)
+    return rval
 
 
 def sub_artist_tag(tag: str, album: bool) -> list[str]:
