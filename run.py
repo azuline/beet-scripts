@@ -108,7 +108,7 @@ def sub_artist_tag(tag: str, album: bool) -> list[str]:
             f"{tag}::'^{re.escape(full_existing_art)}$' {tag}='{combined_new_art}'"
         )
 
-    return commands
+    return uniq(commands)
 
 
 print("\n".join(sub_artist_tag("artist", False)))
