@@ -31,6 +31,10 @@ ALIASES = {
     "Twenty One Pilots": "twenty one pilots",
     "王菲": "Faye Wong (王菲)",
     "프로미스나인": "fromis_9",
+    "(여자)아이들": "(G)I-DLE",
+    "Mitsuko Uchida": "Mitsuko Uchida (内田光子)",
+    "Beethoven": "Ludwig van Beethoven",
+    "Tchaikovsky": "Pyotr Ilyich Tchaikovsky",
 }
 
 
