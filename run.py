@@ -19,6 +19,7 @@ BLACKLIST = [
 ]
 
 ALIASES = {
+    "Various Artists": "Various",
     "BTS": "BTS (방탄소년단)",
     "방탄소년단": "BTS (방탄소년단)",
     "MAMAMOO": "Mamamoo (마마무)",
@@ -28,6 +29,7 @@ ALIASES = {
     "植松伸夫": "Nobuo Uematsu (植松伸夫)",
     "当真伊都子": "Itoko Toma (当真伊都子)",
     "Twenty One Pilots": "twenty one pilots",
+    "王菲": "Faye Wong (王菲)",
 }
 
 
@@ -38,6 +40,7 @@ def uniq(xs: list[T]) -> list[T]:
         if x in seen:
             pass
         rval.append(x)
+        seen.add(x)
     return rval
 
 
