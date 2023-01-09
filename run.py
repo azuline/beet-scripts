@@ -30,6 +30,7 @@ ALIASES = {
     "当真伊都子": "Itoko Toma (当真伊都子)",
     "Twenty One Pilots": "twenty one pilots",
     "王菲": "Faye Wong (王菲)",
+    "프로미스나인": "fromis_9",
 }
 
 
@@ -38,7 +39,7 @@ def uniq(xs: list[T]) -> list[T]:
     rval: list[T] = []
     for x in xs:
         if x in seen:
-            pass
+            continue
         rval.append(x)
         seen.add(x)
     return rval
