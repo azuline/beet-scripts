@@ -35,6 +35,7 @@ ALIASES = {
     "Mitsuko Uchida": "Mitsuko Uchida (内田光子)",
     "Beethoven": "Ludwig van Beethoven",
     "Tchaikovsky": "Pyotr Ilyich Tchaikovsky",
+    "Debussy": "Claude Debussy",
 }
 
 
