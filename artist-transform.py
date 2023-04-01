@@ -5,6 +5,7 @@ This is a script to transform beets multiple artists into `;`-split artists.
 """
 
 import re
+import shlex
 import subprocess
 from typing import TypeVar
 
@@ -104,9 +105,10 @@ def sub_artist_tag(tag: str, album: bool) -> list[str]:
             continue
 
         album_flag = "--album " if album else ""
+        matcher = shlex.quote(f"^{re.escape(full_existing_art)}$")
+        replacement = shlex.quote(combined_new_art)
         commands.append(
-            f"beet modify --yes {album_flag}"
-            f"{tag}::'^{re.escape(full_existing_art)}$' {tag}='{combined_new_art}'"
+            f"beet modify --yes {album_flag}" f"{tag}::{matcher} {tag}={replacement}"
         )
 
     return uniq(commands)

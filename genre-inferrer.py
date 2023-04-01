@@ -14,31 +14,33 @@ from dataclasses import dataclass
 BLACKLIST = ["xxxxxxx"]
 
 MATCHES = [
-    "BLACKPINK"
-    "NewJeans"
-    "XG"
-    "LE SSERAFIM"
-    "Mamamoo"
-    "Red Velvet"
-    "TWICE"
-    "IVE"
-    "fromis_9"
-    "Kep1er"
-    "(G)-IDLE"
-    "ONEUS"
-    "GFRIEND"
-    "G-FRIEND"
-    "Jennie"
-    "LISA"
-    "ROSÉ"
-    "ROSE"
-    "Jisoo"
-    "BTS"
-    "IZ*ONE"
-    "Huh Yunjin"
-    "Oh My Girl"
-    "GFriend"
-    "EXO"
+    "BLACKPINK",
+    "NewJeans",
+    "XG",
+    "LE SSERAFIM",
+    "Mamamoo",
+    "Red Velvet",
+    "TWICE",
+    "IVE",
+    "fromis_9",
+    "Kep1er",
+    # TODO: (G)-IDLE
+    "DLE",
+    "ONEUS",
+    "GFRIEND",
+    "G-FRIEND",
+    "Jennie",
+    "LISA",
+    # TODO: ROSÉ
+    "ROS",
+    "ROSE",
+    "Jisoo",
+    "BTS",
+    "IZ*ONE",
+    "Huh Yunjin",
+    "Oh My Girl",
+    "GFriend",
+    "EXO",
 ]
 
 
@@ -56,12 +58,16 @@ def update_genres() -> list[str]:
         args = [
             "beet",
             "export",
-            "--album" "--include-keys",
+            "--album",
+            "--include-keys",
             "albumartist,album,genre",
-            "albumartist:" + shlex.quote(m),
+            "albumartist:" + m,
         ]
         result = subprocess.run(args, capture_output=True)
-        out = json.loads(result.stdout.decode())
+        stdout = result.stdout.decode()
+        if not stdout.strip():
+            continue
+        out = json.loads(stdout)
         for album in out:
             kpop_albums.append(
                 Album(
@@ -74,12 +80,15 @@ def update_genres() -> list[str]:
     commands: list[str] = []
     for album in kpop_albums:
         if album.genre == "K-Pop":
-            pass
+            continue
+
+        albumartist = shlex.quote(f"^{re.escape(album.albumartist)}$")
+        album = shlex.quote(f"^{re.escape(album.album)}$")
 
         commands.append(
             "beet modify --yes --album "
-            f"albumartist::'^{re.escape(album.albumartist)}$' "
-            f"album::'^{re.escape(album.album)}$' "
+            f"albumartist::{albumartist} "
+            f"album::{album} "
             f"genre='K-Pop'"
         )
 
