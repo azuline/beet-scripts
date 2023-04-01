@@ -8,6 +8,8 @@ import re
 import subprocess
 from typing import TypeVar
 
+from std import uniq
+
 
 T = TypeVar("T")
 
@@ -40,21 +42,10 @@ ALIASES = {
 }
 
 
-def uniq(xs: list[T]) -> list[T]:
-    seen: set[T] = set()
-    rval: list[T] = []
-    for x in xs:
-        if x in seen:
-            continue
-        rval.append(x)
-        seen.add(x)
-    return rval
-
-
 def sub_artist_tag(tag: str, album: bool) -> list[str]:
-    args = ["beet", "ls", "-f", f"${tag}"]
+    args = ["beet", "ls", "--format", f"${tag}"]
     if album:
-        args.append("-a")
+        args.append("--album")
 
     cmd_artists = subprocess.run(args, capture_output=True)
     artists = uniq(
@@ -112,7 +103,7 @@ def sub_artist_tag(tag: str, album: bool) -> list[str]:
         if full_existing_art == combined_new_art:
             continue
 
-        album_flag = "-a " if album else ""
+        album_flag = "--album " if album else ""
         commands.append(
             f"beet modify --yes {album_flag}"
             f"{tag}::'^{re.escape(full_existing_art)}$' {tag}='{combined_new_art}'"
