@@ -36,6 +36,7 @@ ALIASES = {
     "Beethoven": "Ludwig van Beethoven",
     "Tchaikovsky": "Pyotr Ilyich Tchaikovsky",
     "Debussy": "Claude Debussy",
+    "Unknown": "Unknown Artist",
 }
 
 
