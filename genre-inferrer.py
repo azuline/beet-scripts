@@ -14,6 +14,7 @@ from dataclasses import dataclass
 BLACKLIST = ["xxxxxxx"]
 
 MATCHES = [
+    "aespa",
     "BLACKPINK",
     "NewJeans",
     "XG",
@@ -28,7 +29,8 @@ MATCHES = [
     "DLE",
     "ONEUS",
     "GFRIEND",
-    "G-FRIEND",
+    # TODO: G-Dragon
+    "Dragon",
     "Jennie",
     "LISA",
     # TODO: ROSÉ
