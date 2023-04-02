@@ -27,6 +27,7 @@ MATCHES = [
     "Kep1er",
     # TODO: (G)-IDLE
     "DLE",
+    "ITZY",
     "ONEUS",
     "GFRIEND",
     # TODO: G-Dragon
